@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CodeLab.Scoreboard.Domain.Entities
 {
-    public class Confraternization
+    public sealed class Confraternization : Entity
     {
 
         public IReadOnlyCollection<Score> Scores => _scores;
@@ -20,8 +18,8 @@ namespace CodeLab.Scoreboard.Domain.Entities
             _scores = scores;
         }
 
-        private bool IsValid(List<Score> scores) 
-            => scores.Count == 10 
+        private bool IsValid(List<Score> scores)
+            => scores.Count == 10
             && !scores.Any(s => s == null);
     }
 }

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CodeLab.Scoreboard.Domain.Entities
 {
-    public class Score
+    public sealed class Score : Entity
     {
         public Employee Penitent { get; private set; }
         public DateTime Date { get; private set; }
@@ -25,11 +21,11 @@ namespace CodeLab.Scoreboard.Domain.Entities
         private void Validate(Employee penitent, DateTime date, string description)
         {
             if (!IsValidPenitent(penitent))
-                throw new Exception("O penitente está invalido");    
-            
+                throw new Exception("O penitente está invalido");
+
             if (!IsValidDate(date))
-                throw new Exception("A data estar no intervalo de hoje a 1 semana atrás.");            
-            
+                throw new Exception("A data estar no intervalo de hoje a 1 semana atrás.");
+
             if (!IsValidDescription(description))
                 throw new Exception("A descrição não pode ser nula ou vazia, precisa ter 10 a 250 characteres");
         }
@@ -47,6 +43,6 @@ namespace CodeLab.Scoreboard.Domain.Entities
                 && description.Length >= 10
                 && description.Length <= 255;
         }
-        
+
     }
 }
