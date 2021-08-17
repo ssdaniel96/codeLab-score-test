@@ -1,25 +1,22 @@
-﻿using System;
+﻿using CodeLab.Scoreboard.Domain.ValueObjects;
+using System;
 
 namespace CodeLab.Scoreboard.Domain.Entities
 {
     public sealed class Employee : Entity
     {
-        public string Name { get; private set; }
-        public string LastName { get; private set; }
-        public DateTime? BirthDate { get; private set; }
+        public string FirstName => FullName.Name;
+        public string LastName => FullName.LastName;
+
+        public FullName FullName { get; private set; }
+        public BirthDate BirthDate { get; private set; }
         public bool IsRetired { get; private set; }
 
-        public Employee(string name)
+        public Employee(string name, string lastName = null, DateTime? birthDate = null)
         {
-            Name = name;
+            FullName = FullName.CreateValid(name, lastName);
+            BirthDate = birthDate.HasValue ? BirthDate.CreateValid(birthDate.Value) : null;
             IsRetired = false;
         }
-
-        public Employee(string name, string lastName = null, DateTime? birthDate = null) : this(name)
-        {
-            LastName = lastName;
-            BirthDate = birthDate;
-        }
-
     }
 }
