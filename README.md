@@ -1,4 +1,4 @@
-#SOBRE
+SOBRE
 
 Um projeto de teste para o CodeLab de DDD.
 <br>
